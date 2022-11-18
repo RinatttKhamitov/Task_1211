@@ -19,5 +19,14 @@ namespace Task_1211
             this.project = project;
         }
         
+
+        public void СloseProject()
+        {
+            project.PrintStatus();
+            if (project.status == StatusProject.Закрыт)
+            {
+                Console.WriteLine("Проект закрыт");
+            }
+        }
     }
 }

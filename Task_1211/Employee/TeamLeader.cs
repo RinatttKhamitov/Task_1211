@@ -29,11 +29,6 @@ namespace Task_1211
             executorAndTask[executor] = executor.task;
         }
 
-        // Дает статус В работе
-        public void GiveStatus(Task task)
-        {
-            task.status = StatusTask.В_работе;
-        }
 
         public void AssignTask(Executor executor)
         {
@@ -66,7 +61,7 @@ namespace Task_1211
                                 Task tempTask = emp.Key.task;
                                 emp.Key.task = executor.task;
                                 executor.task = tempTask;
-                                break;
+                                return;
                             }
                         }
                         break;
@@ -77,12 +72,56 @@ namespace Task_1211
         }
         public void GetReports()
         {
+
+            Console.Write("От кого вы хотите увидеть отчет?: ");
+            string empName = Console.ReadLine();
+            foreach (var executor in executorAndTask)
+            {
+                if (executor.Key.task != null & executor.Key.name.Equals(empName))
+                {
+                    int day = (DateTime.Now.Date - project.startJob.Date).Days;
+                    executor.Key.GiveReport(day / 30 + 1);
+                }
+            }
+        }
+        public void StartWork()
+        {
             foreach (var executor in executorAndTask)
             {
                 if (executor.Key.task != null)
                 {
-                    int day = (DateTime.Now.Date - executor.Key.task.deadlines.Date).Days;
-                    Console.WriteLine(day);
+                    if (executor.Key.task.status == StatusTask.Назначена)
+                    {
+                        executor.Key.task.status = StatusTask.В_работе;
+                    }
+                }
+            }
+        }
+        public void SubmitForReview()
+        {
+            Console.WriteLine("Кто хочет оправить на проверку: ");
+            string nameEmp = Console.ReadLine();
+
+            foreach (var emp in executorAndTask)
+            {
+                if (emp.Key.name.Equals(nameEmp))
+                {
+                    emp.Key.task.status = StatusTask.На_проверке;
+                    return;
+                }
+            }
+        }
+        public void MakeDone()
+        {
+            Console.WriteLine("Чей проект готов?: ");
+            string nameEmp = Console.ReadLine();
+
+            foreach (var emp in executorAndTask)
+            {
+                if (emp.Key.name.Equals(nameEmp))
+                {
+                    emp.Key.task.status = StatusTask.Выполнена;
+                    return;
                 }
             }
         }

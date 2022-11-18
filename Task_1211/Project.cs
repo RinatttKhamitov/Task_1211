@@ -21,6 +21,8 @@ namespace Task_1211
         /// </summary>
         DateTime deadlines;
 
+        public DateTime startJob;
+
         /// <summary>
         /// заказчик client
         /// </summary>
@@ -48,16 +50,24 @@ namespace Task_1211
             this.deadlines = deadlines;
             this.tasks = tasks;
             status = (StatusProject)statusInt;
+            // startJob = DateTime.Now;
+            startJob = new DateTime(2022, 10, 10);
         }
         public void PrintStatus()
         {
+            Console.WriteLine();
             int countStatusAppointed = 0;
+            int countStatusCompleted = 0;
             for (int i = 0; i < tasks.Count; i++)
             {
-                if (tasks[i].status == StatusTask.Назначена)
+                if (tasks[i].status == StatusTask.Назначена || tasks[i].status == StatusTask.В_работе)
                 {
                     
                     countStatusAppointed++;
+                }
+                else if (tasks[i].status == StatusTask.Выполнена)
+                {
+                    countStatusCompleted++;
                 }
             }
             if (countStatusAppointed == tasks.Count)
@@ -65,6 +75,13 @@ namespace Task_1211
                 status = StatusProject.Исполнение;
 
                 Console.WriteLine("Проект перешел в статус исполнение");
+                Console.WriteLine($"статус проекта = {status}");
+            }
+            else if (countStatusCompleted == tasks.Count)
+            {
+                status = StatusProject.Закрыт;
+
+                Console.WriteLine("Проект перешел в статус Закрыт");
                 Console.WriteLine($"статус проекта = {status}");
             }
             else

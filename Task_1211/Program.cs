@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace Task_1211
@@ -10,12 +11,12 @@ namespace Task_1211
         {
             // 
 
-            List<Task> tasks = new List<Task> { new Task("1", new DateTime(2022, 11, 24), 0), new Task("2", new DateTime(2022, 11, 24), 0),
-            new Task("3", new DateTime(2022, 11, 24), 0),  new Task("4", new DateTime(2022, 11, 24), 0),  new Task("5", new DateTime(2022, 11, 24), 0),
-            new Task("6", new DateTime(2022, 11, 24), 0),  new Task("7", new DateTime(2022, 11, 24), 0),  new Task("8", new DateTime(2022, 11, 24), 0),
-            new Task("9", new DateTime(2022, 11, 24), 0),  new Task("10", new DateTime(2022, 11, 24), 0) };
+            List<Task> tasks = new List<Task> { new Task("Создать главную страницу", new DateTime(2022, 12, 15), 0), new Task("Добавить авторизацию на сайт", new DateTime(2023, 1, 14), 0),
+            new Task("Создать страницу профиля", new DateTime(2022, 11, 24), 0),  new Task("Создать базу данных для аккаунтов студентов", new DateTime(2022, 11, 24), 0),  new Task("Создать базу данных для преподавателей", new DateTime(2022, 11, 24), 0),
+            new Task("Создать страницу для абитуриентов", new DateTime(2022, 11, 24), 0),  new Task("Создать функцию для слабовидящих", new DateTime(2022, 11, 24), 0),  new Task("Создать темную тему", new DateTime(2022, 11, 24), 0),
+            new Task("Создать чат для студентов", new DateTime(2022, 11, 24), 0),  new Task("Исправить все баги", new DateTime(2022, 11, 24), 0) };
 
-            Project project = new Project("", new DateTime(2022, 11, 24), tasks, 0);
+            Project project = new Project("Создание сайта для кфу", new DateTime(2022, 11, 24), tasks, 0);
             Client Oleg = new Client("Олег", 24, project, tasks);
             TeamLeader Insaf = new TeamLeader("Инсаф", 29, Oleg, project);
             Executor Vlad = new Executor("Влад",  21, Insaf);
@@ -37,9 +38,9 @@ namespace Task_1211
             }
 
             string command = "";
-            while (!command.Equals("5"))
+            while (!command.Equals("9"))
             {
-                Console.WriteLine("Команды: 1) Получить статусы задач, 2) Статус проекта 3) Поменяться задачей 4) Получить отчеты 5) Выйти");
+                Console.WriteLine("Команды: 1) Получить статусы задач 2) Статус проекта 3) Поменяться задачей 4) Начать проект  \n         5) Получить отчеты 6) Отправить на проверку 7) Выполнить задачу 8) Закрыть проект 9) Выйти");
                 Console.WriteLine();
                 Console.WriteLine("Сотрудник  Задача");
                 for (int i = 0; i < executors.Count; i++)
@@ -57,16 +58,12 @@ namespace Task_1211
                 {
                     case "1":
                         Console.WriteLine();
-                        Console.WriteLine("Сотрудник  Статус задачи");
+                        Console.WriteLine("Статус задачи  задача");
                         for (int i = 0; i < executors.Count; i++)
                         {
                             if (executors[i].task != null)
                             {
-                                Console.WriteLine($"{executors[i].name}{string.Concat(Enumerable.Repeat(" ", 11 - executors[i].name.Length))}{executors[i].task.status}");
-                            }
-                            else
-                            {
-                                Console.WriteLine($"{executors[i].name}{string.Concat(Enumerable.Repeat(" ", 11 - executors[i].name.Length))}нету задачи");
+                                Console.WriteLine($"{executors[i].task.status}{string.Concat(Enumerable.Repeat(" ", 15 - executors[i].task.status.ToString().Length))}{executors[i].task.description}");
                             }
                         }
                         break;
@@ -88,7 +85,19 @@ namespace Task_1211
                         }
                         break;
                     case "4":
+                        Insaf.StartWork();
+                        break;
+                    case "5":
                         Insaf.GetReports();
+                        break;
+                    case "6":
+                        Insaf.SubmitForReview();
+                        break;
+                    case "7":
+                        Insaf.MakeDone();
+                        break;
+                    case "8":
+
                         break;
 
                 }
