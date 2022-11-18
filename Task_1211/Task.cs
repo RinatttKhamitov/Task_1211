@@ -7,7 +7,7 @@ namespace Task_1211
     enum StatusTask
     {
         Назначена, В_работе, На_проверке,
-        Выполнена
+        Выполнена, 
 
     }
     class Task
@@ -20,7 +20,7 @@ namespace Task_1211
         /// <summary>
         /// 
         /// </summary>
-        DateTime deadlines;
+        public DateTime deadlines;
 
         /// <summary>
         /// заказчик

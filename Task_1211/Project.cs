@@ -56,6 +56,7 @@ namespace Task_1211
             {
                 if (tasks[i].status == StatusTask.Назначена)
                 {
+                    
                     countStatusAppointed++;
                 }
             }
@@ -64,10 +65,13 @@ namespace Task_1211
                 status = StatusProject.Исполнение;
 
                 Console.WriteLine("Проект перешел в статус исполнение");
+                Console.WriteLine($"статус проекта = {status}");
             }
             else
             {
+                status = StatusProject.Проект;
                 Console.WriteLine("Вы не можете объявить работу, так как есть неназначенные задания");
+                Console.WriteLine($"статус проекта = {status}");
             }
         }
 

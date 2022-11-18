@@ -37,14 +37,21 @@ namespace Task_1211
             }
 
             string command = "";
-            while (!command.Equals(4))
+            while (!command.Equals("5"))
             {
-                Console.WriteLine("Команды: 1) Получить статусы задач, 2) Статус проекта ");
+                Console.WriteLine("Команды: 1) Получить статусы задач, 2) Статус проекта 3) Поменяться задачей 4) Получить отчеты 5) Выйти");
                 Console.WriteLine();
                 Console.WriteLine("Сотрудник  Задача");
                 for (int i = 0; i < executors.Count; i++)
                 {
-                    Console.WriteLine($"{executors[i].name}{string.Concat(Enumerable.Repeat(" ", 11 - executors[i].name.Length))}{executors[i].task.description}");
+                    if (executors[i].task != null)
+                    {
+                        Console.WriteLine($"{executors[i].name}{string.Concat(Enumerable.Repeat(" ", 11 - executors[i].name.Length))}{executors[i].task.description}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{executors[i].name}{string.Concat(Enumerable.Repeat(" ", 11 - executors[i].name.Length))}нету задачи");
+                    }
                 }
                 switch (command)
                 {
@@ -53,13 +60,37 @@ namespace Task_1211
                         Console.WriteLine("Сотрудник  Статус задачи");
                         for (int i = 0; i < executors.Count; i++)
                         {
-                            Console.WriteLine($"{executors[i].name}{string.Concat(Enumerable.Repeat(" ", 11 - executors[i].name.Length))}{executors[i].task.status}");
+                            if (executors[i].task != null)
+                            {
+                                Console.WriteLine($"{executors[i].name}{string.Concat(Enumerable.Repeat(" ", 11 - executors[i].name.Length))}{executors[i].task.status}");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"{executors[i].name}{string.Concat(Enumerable.Repeat(" ", 11 - executors[i].name.Length))}нету задачи");
+                            }
                         }
                         break;
                     case "2":
                         
                         Insaf.project.PrintStatus();
                         break;
+                    case "3":
+                        Console.Write("Какой сотрудник хочет поменятся задачей?: ");
+                        string name_A = Console.ReadLine();
+
+                        foreach (Executor emp in executors)
+                        {
+                            if (emp.name.Equals(name_A))
+                            {
+                                Insaf.AssignTask(emp);
+                                break;
+                            }
+                        }
+                        break;
+                    case "4":
+                        Insaf.GetReports();
+                        break;
+
                 }
                 command = Console.ReadLine();
                 Console.Clear();
