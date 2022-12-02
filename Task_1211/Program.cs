@@ -12,10 +12,10 @@ namespace Task_1211
             
             List<Task> tasks = new List<Task> { new Task("Создать главную страницу", new DateTime(2022, 12, 15), 0), new Task("Добавить авторизацию на сайт", new DateTime(2023, 1, 14), 0),
             new Task("Создать страницу профиля", new DateTime(2023, 1, 24), 0),  new Task("Создать базу данных для аккаунтов студентов", new DateTime(2023, 5, 2), 0),  new Task("Создать базу данных для преподавателей", new DateTime(2023, 5, 6), 0),
-            new Task("Создать страницу для абитуриентов", new DateTime(2023, 8, 3), 0),  new Task("Создать функцию для слабовидящих", new DateTime(2023, 11, 24), 0),  new Task("Создать темную тему", new DateTime(2023, 8, 0), 0),
-            new Task("Создать чат для студентов", new DateTime(2023, 8, 0), 0),  new Task("Исправить все баги", new DateTime(6666, 6, 6), 0) };
+            new Task("Создать страницу для абитуриентов", new DateTime(2023, 8, 3), 0),  new Task("Создать функцию для слабовидящих", new DateTime(2023, 11, 24), 0),  new Task("Создать темную тему", new DateTime(2023, 8, 1), 0),
+            new Task("Создать чат для студентов", new DateTime(2023, 8, 1), 0),  new Task("Исправить все баги", new DateTime(6666, 6, 6), 0) };
 
-            Project project = new Project("Создание сайта для кфу", new DateTime(2023, 8, 0), tasks, 0);
+            Project project = new Project("Создание сайта для кфу", new DateTime(2023, 8, 1), tasks, 0);
             Client Oleg = new Client("Олег", 24, project, tasks);
             TeamLeader Insaf = new TeamLeader("Инсаф", 29, Oleg, project);
             Executor Vlad = new Executor("Влад",  21, Insaf);
